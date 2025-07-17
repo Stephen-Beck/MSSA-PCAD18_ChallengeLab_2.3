@@ -1,18 +1,18 @@
 ﻿/*
-Write a C# Sharp program that takes a number and a width also a number, as input. 
-Display a triangle of that width, using that number.
+Write a C# Sharp program that takes a choice of character and a width as an integer. 
+Then display a triangle of that width, using that character.
 
 Test Data
-    Enter a number: 6
+    Enter a character: e
     Enter the desired width: 6
 
 Expected Output:
-666666
-66666
-6666
-666
-66
-6
+eeeeee
+eeeee
+eeee
+eee
+ee
+e
  */
 
 namespace ChallengeLab_2._3
@@ -21,18 +21,15 @@ namespace ChallengeLab_2._3
     {
         static void Main(string[] args)
         {
-            int triangleNumber = 0;
-            int triangleWidth = 0;
-
-            Console.Write("Please enter an integer number for the triangle to be made up of: ");
-            triangleNumber = GetUserInput();
+            Console.Write("Please enter a single character for the triangle to be made up of: ");
+            char triangleChar = GetUserInputChar();
             Console.Write("Please enter an integer number for the triangle width: ");
-            triangleWidth = GetUserInput();
+            int triangleWidth = GetUserInputWidth();
 
-            DisplayTriangle(triangleNumber, triangleWidth);
+            DisplayTriangle(triangleChar, triangleWidth);
         }
 
-        static int GetUserInput()
+        static int GetUserInputWidth()
         {
             int validInput = 0;
 
@@ -45,7 +42,20 @@ namespace ChallengeLab_2._3
             }
         }
 
-        static void DisplayTriangle(int number, int width)
+        static char GetUserInputChar()
+        {
+            char validInput = ' ';
+
+            while (true)
+            {
+                if (char.TryParse(Console.ReadLine().Trim(), out validInput))
+                    return validInput;
+                else
+                    Console.Write("Invalid entry. Please enter a single character: ");
+            }
+        }
+
+        static void DisplayTriangle(char character, int width)
         {
             int height = 0;
             Console.WriteLine();
@@ -54,7 +64,7 @@ namespace ChallengeLab_2._3
             {
                 for (int i = 0; i < width - height; i++)
                 {
-                    Console.Write(number);
+                    Console.Write(character);
                 }
                 Console.WriteLine();
                 height++;
